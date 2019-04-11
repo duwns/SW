@@ -6,39 +6,37 @@ using namespace std;
 
 vector<int> dfsD;
 vector<int> bfsD;
-int a[1002][1002]={0,};
-int ch[1002]={0,};
-int ch2[1002]={0,};
+int a[1001][1001]={0,};
+int ch[1001]={0,};
+int ch2[1001]={0,};
 //int count=0;
 
 void dfs(int S, int N, int M){
 	
 	stack<int> stc;
 	
-    stc.push(S);
-    int tmp=stc.top();
+    stc.push(S);             //시작정점을 스택에 추가
+    int tmp;   	 //시작정점을 tmp애 추가
           
     while(!stc.empty()){
     //  if(count==N) break;
       	
-		if(ch[stc.top()]==0){
-			
-      		dfsD.push_back(stc.top());
-     		tmp=stc.top();
-      		ch[stc.top()]=1;
+		if(ch[stc.top()]==0){      				   //가장 작은 번호의 정점이 방문되지 않았다면
+			tmp=stc.top();	
+			ch[tmp]=1;
+      		dfsD.push_back(tmp);				   //방문 정점 데이터에 추가			
+      							   //방문 확인
       		//printf("%d ",stc.top());
      		stc.pop();	
+
+     		for(int i=N; i>0; i--){       
+            if(a[tmp][i]==1  && ch[i]==0)          //인덱스 정점과 i정점이 연결되어있고 i정점이 방문되어있지 않다면
+            	stc.push(i);
+        }   
 		} else {
 			stc.pop();
 		}
-      
-        for(int i=N; i>0; i--){       
-            if(a[tmp][i]==1  && ch[i]==0)
-            stc.push(i);
-        }   
-      
     }
-   
 }
 
 void bfs(int S, int N){
@@ -55,19 +53,18 @@ void bfs(int S, int N){
 		  	//("%d", que.front());
 		  	bfsD.push_back(que.front());
 		  	here=que.front();
-		  	que.pop();	  		  	
+		  	que.pop();	 
+		  	for(i=1; i<=N; i++)
+			{	
+				if(a[i][here]==1 && i!=here && ch2[i]==0){
+					//printf("%d", que.front());
+					que.push(i);
+				}
+				
+			} 		  	
 		} else {
 			que.pop();
-	}
-		
-		for(i=1; i<=N; i++)
-		{	
-			if(a[i][here]==1 && i!=here && ch2[i]==0){
-				//printf("%d", que.front());
-				que.push(i);
-			}
-			
-		}
+		}	
 	    
 	}
 
