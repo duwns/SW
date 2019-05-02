@@ -29,6 +29,7 @@ int bfs(int sis, int bro){
 		else if(que.front() == bro)
 		{
 			result = level;
+			return level;
 		}
 
 		
