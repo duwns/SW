@@ -1,0 +1,52 @@
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int level=0;
+int result=0;
+queue<int> que;
+
+int bfs(int sis, int bro){
+	
+
+	while(!que.empty()){
+
+		que.push(sis-1);
+		que.push(sis+1);
+		que.push(sis*2);
+
+		if(que.front() != bro){
+			level++;
+			int tmp=que.front();
+			que.pop();	
+
+			que.push(tmp-1);
+			que.push(tmp+1);
+			que.push(tmp*2);
+
+		}
+		else if(que.front() == bro)
+		{
+			result = level;
+		}
+
+		
+
+	}
+	
+
+}
+
+
+int main(){
+
+	int sis, bro;
+	scanf("%d %d", &sis, &bro);
+
+	int result = bfs(sis, bro);
+	printf("%d", level);
+
+
+	return 0;
+}
