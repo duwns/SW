@@ -28,13 +28,12 @@ int bfs(int sis, int bro){
 			if(tmp==sis-(level+1)) level++;
 			que.pop();
 			
-		    if(que.front() == bro)
-			return level;
+		    
 		}
 		
 	}
-	
-	
+	if(que.front()==sis-(level+1)) level++;
+	return level;
 	
 
 }
