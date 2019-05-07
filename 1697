@@ -22,6 +22,7 @@ int bfs(int sis, int bro){
 			//printf("%d \n", que.front());
 			
 			int tmp=que.front();
+			
 			que.push(tmp-1);
 			que.push(tmp+1);
 			que.push(tmp*2);
