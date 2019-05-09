@@ -3,38 +3,48 @@
 
 using namespace std;
 
-int level=0;
+int level[100010]={0,};
 queue<int> que;
-
 int bfs(int sis, int bro){
-	if(sis==bro)
-	{
-		return 0;
-	}
-		que.push(sis-1);
-		que.push(sis+1);
-		que.push(sis*2);
+//	if(sis==bro)
+//	{
+//		return 0;
+//	}
+//		que.push(sis-1);
+//		que.push(sis+1);
+//		que.push(sis*2);
+
+	que.push(sis);
 
 	while(que.front() != bro){
 		
 		if(que.front() != bro){
 		    
-			//printf("%d \n", que.front());
+		//	printf("%d \n", que.front());
 			
 			int tmp=que.front();
-			
-			que.push(tmp-1);
-			que.push(tmp+1);
-			que.push(tmp*2);
-			if(tmp==sis-(level+1)) level++;
 			que.pop();
+			
+			if(tmp-1>=0 && level[tmp-1]==0){
+				que.push(tmp-1);
+				level[tmp-1] = level[tmp] +1;
+			}
+			if(tmp+1<=100000 && level[tmp+1]==0)
+			{
+				que.push(tmp+1);
+				level[tmp+1] = level[tmp] +1;
+			}
+			if(tmp*2<=100000 && level[tmp*2]==0)
+			{
+				que.push(tmp*2);
+				level[tmp*2] = level[tmp]+1;
+			}	
 			
 		    
 		}
 		
 	}
-	if(que.front()==sis-(level+1)) level++;
-	return level;
+	return level[bro];
 	
 
 }
