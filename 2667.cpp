@@ -1,9 +1,10 @@
 #include <iostream>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
-int map[25][25]={0,};
+int map[26][26]={0,};
 priority_queue<int,vector<int>,greater<int> > aresult;
 int result[1000]={0,};
 int house=0;
@@ -35,6 +36,10 @@ int main() {
 		}
 	}
 
+	int a[3] = {0, };
+	
+	printf("%d %d %d \n", a[-1], a[0], a[3]);
+	
 
 	for(i=0; i<length; i++)	{
 
